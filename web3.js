@@ -12,8 +12,8 @@ createAccount = (password) => {
 decryptAccount = async (encryptedJson, passphase) => {
     const account = await web3.eth.accounts.decrypt(encryptedJson, passphase)
     console.log(`Account: ${account.address}`)
-    const balace = await web3.eth.getBalance(account.address)
-    console.log(`Balance: ${balace}`)
+    const balace = await web3.eth.getBalance("0xf70597d0d39793D0639c22f61a627c174459B856")
+    console.log(`Balance: ${web3.utils.fromWei(balace, 'ether')}`)
 }
 
 var encryptedJson = {
