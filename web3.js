@@ -1,5 +1,5 @@
 var Web3 = require('web3');
-var web3 = new Web3(Web3.givenProvider)
+var web3 = new Web3("https://rpc.bitkubchain.io")
 
 createAccount = (password) => {
     if(password != "" | password != null) { 
@@ -9,8 +9,11 @@ createAccount = (password) => {
     }
 }
 
-decryptAccount = (encryptedJson, passphase) => {
-    console.log(web3.eth.accounts.decrypt(encryptedJson, passphase))
+decryptAccount = async (encryptedJson, passphase) => {
+    const account = await web3.eth.accounts.decrypt(encryptedJson, passphase)
+    console.log(`Account: ${account.address}`)
+    const balace = await web3.eth.getBalance(account.address)
+    console.log(`Balance: ${balace}`)
 }
 
 var encryptedJson = {
